@@ -1,4 +1,5 @@
 library(data.table)
+Sys.setlocale(category = "LC_ALL", locale = "english")
 data<-fread("household_power_consumption.txt",header=TRUE, sep = ";", na.strings = "?", colClasses = c('character','character','numeric','numeric','numeric','numeric','numeric','numeric','numeric'))
 data$Date<-as.Date(data$Date,"%d/%m/%Y")
 data<-subset(data, Date == "2007-2-2"|Date=="2007-2-1")
@@ -10,6 +11,6 @@ with(data, {
   lines(Sub_metering_2~DateTime,col="Red")
   lines(Sub_metering_3~DateTime,col="Blue")
 })
-legend("topright",cex = 0.9,y.intersp = 0.5,xjust = 1,lwd=c(1,1,1),col=c("black","red","blue"),legend = c("Sub_metering_1","Sub_metering_2","Sub_metering_3"))
+legend("topright",y.intersp = 1,lwd=c(1,1,1),col=c("black","red","blue"),legend = c("Sub_metering_1","Sub_metering_2","Sub_metering_3"))
 dev.copy(png,"plot3.png", width=480, height=480)
 dev.off()
